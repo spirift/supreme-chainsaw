@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 const List = () => {
   const [drones, setDrones] = useState([])
-  const [minNumFlights] = useState(5)
-  const [maxNumFlights] = useState(10)
+  const [minNumCrashes] = useState(0)
+  const [maxNumCrashes] = useState(100)
   useEffect(() => {
     const caller = async () => {
       let data = await fetch('https://bobs-epic-drone-shack-inc.herokuapp.com/api/v0/drones')
@@ -20,7 +20,7 @@ const List = () => {
     <div>
       <h1>Drones</h1>
       <ul>
-        {drones && drones.filter(({numFlights}) => numFlights > minNumFlights && numFlights < maxNumFlights).map(({droneId, name, price, currency, numFlights, numCrashes} = {}) => (<li>
+        {drones && drones.filter(({numCrashes}) => numCrashes > minNumCrashes && numCrashes < maxNumCrashes).map(({droneId, name, price, currency, numFlights, numCrashes} = {}) => (<li>
           <h3>{name}</h3>
           <span>{price} {currency}</span>
           <span>Flights: {numFlights}</span>
